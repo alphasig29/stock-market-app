@@ -1,0 +1,42 @@
+<div class="container" >
+  <div class="row ">
+    <div class="col-sm-10  ">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div formGroupName="userData">
+         <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            formControlName="username"
+            class="form-control">
+            <span
+            *ngIf="!loginForm.get('userData.username').valid && loginForm.get('userData.username').touched"
+            class="help-block">
+            <span
+            *ngIf="loginForm.get('userData.username')
+              .errors['required']">
+              The name is required!
+          </span>
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            class="form-control">
+            <span
+            *ngIf="!loginForm.get('userData.password').valid && loginForm.get('userData.password').touched"
+            class="help-block">Please enter a password!</span>
+        </div>
+        </div>
+        <span
+        *ngIf="loginForm.valid && loginForm.touched && credentialsFailed"
+        class="help-block">Login failed. Check Uername and Password.</span>
+        <button class="btn btn-primary float-right" style="margin-bottom: 5px;" type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

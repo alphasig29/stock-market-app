@@ -1,0 +1,11 @@
+
+<!-- <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row row-cols-md-12"> -->
+  <div class="container-fluid" style="background-color: #e3f2fd;">
+    <h1 class="text-center">Sector Heat Chart</h1>
+    <!-- <button class="btn btn-primary" (click)="onRefreshData()">Refresh Data</button> -->
+    <hr>
+    <div class="card-deck" >
+      <app-stock-card *ngFor="let sector of allSectors" [stockQuote]="sector"></app-stock-card>
+    </div>
+</div>
+

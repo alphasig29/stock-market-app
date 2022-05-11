@@ -1,0 +1,8 @@
+/* :host {
+  background-color: lightblue;
+} */
+
+.component-body {
+  min-height: 300px;
+}
+

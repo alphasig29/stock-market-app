@@ -1,0 +1,42 @@
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" style="cursor:pointer" routerLink="/" routerLinkActive="active">The Stonk Pit</a>
+  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <!-- Main Nav links -->
+      <li class="nav-item ">
+        <a class="nav-link" [class.disabled]="!hasSectorAccess" style="cursor:pointer" routerLink="/sectors" routerLinkActive="active">Sectors</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.disabled]="!hasStockListAccess" style="cursor:pointer" routerLink="/stocks" routerLinkActive="active">My Stonks</a>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-right" *ngIf="!userIsLoggedIn">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link" style="cursor:pointer" routerLink="/" routerLinkActive="active"
+            >login</a>
+      </li>
+    </ul>
+    </div>
+    <div class="navbar-right" *ngIf="userIsLoggedIn">
+    <ul class="navbar-nav">
+      <span class="nav-link" *ngIf="loggedInUserName!=''" style="color: white">Welcome  {{ loggedInUserName }}</span>
+      <li class="nav-item">
+        <a class="nav-link" style="cursor:pointer" routerLink="" routerLinkActive="active"
+             (click)="onLogOutRequested()">logout</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+<nav class="navbar navbar-dark bg-primary">
+</nav>
+

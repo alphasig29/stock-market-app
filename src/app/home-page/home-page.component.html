@@ -1,0 +1,37 @@
+<app-login class="float-right col-md-3 border border-primary rounded-sm"
+  style="margin-top: 5px; margin-right: 5px;"
+  *ngIf="!userIsLoggedIn"></app-login>
+<div class="container" style="min-height: 275px;">
+  <h3 class="text-center">Welcome to the Stonk Pit</h3>
+  <br>
+  <div class="row">
+    <div class= "container col-md-10">
+      <p>Once you login, you will have access to monitor the market sectors in real-time,
+        as well as creating your own list of stocks to follow.
+      </p>
+      <p>Enjoy your time on The Stonk Pit!</p>
+    </div>
+
+    <div class=" container col-md-10">
+      <hr>
+      <h6>Valid accounts:</h6>
+      <div >
+        <li>Username: admin  Password: admin </li>
+        <li>Username: guest  Password: guest</li>
+        <li>Username: user  Password: user</li>
+        <hr>
+      </div>
+
+
+    </div>
+
+
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <div class="container col-md-10">
+      <app-random-quote></app-random-quote>
+    </div>
+  </div>
+</div>
