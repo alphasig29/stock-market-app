@@ -28,7 +28,7 @@ export class StockAPIService {
     searchParams = searchParams.append(this.config.API_STOCK_SECTOR_PARM_NAME, this.config.API_STOCK_SECTOR_PARM_VALUE);
     searchParams = searchParams.append(this.config.API_STOCK_QUOTE_PARAM_OPTION_NAME, this.config.API_STOCK_QUOTE_PARAM_OPTION_VALUE);
     searchParams = searchParams.append(this.config.API_STOCK_TOKEN_PARAM_NAME, environment.API_IEXCLOUD_TOKEN);
-
+    console.log('Using Environment Variables!');
     return this.http.get<APIAllSEctorStockQuote[]>(this.config.API_ENDPOINT,
       {
         params: searchParams,
