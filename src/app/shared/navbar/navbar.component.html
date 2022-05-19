@@ -10,10 +10,14 @@
     <ul class="navbar-nav">
       <!-- Main Nav links -->
       <li class="nav-item ">
-        <a class="nav-link" [class.disabled]="!hasSectorAccess" style="cursor:pointer" routerLink="/sectors" routerLinkActive="active">Sectors</a>
+        <a class="nav-link" *ngIf="hasSectorAccess" style="cursor:pointer" routerLink="/sectors" routerLinkActive="active">Sectors</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [class.disabled]="!hasStockListAccess" style="cursor:pointer" routerLink="/stocks" routerLinkActive="active">My Stonks</a>
+        <a class="nav-link" *ngIf="hasStockListAccess"  style="cursor:pointer" routerLink="/stocks" routerLinkActive="active">My Stonks</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="hasAdminAccess" style="cursor:pointer" routerLink="/admin"
+          routerLinkActive="active">Administration</a>
       </li>
     </ul>
   </div>

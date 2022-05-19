@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthenticatorService } from '../shared/authenticator.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../shared/auth.service';
 
 
 @Component({
@@ -10,27 +10,26 @@ import { Subscription } from 'rxjs';
 })
 export class HomePageComponent implements OnInit, OnDestroy {
   userIsLoggedIn:boolean = false;
-  private loginChangeSub: Subscription; // getting notifications when the data changes
+  private siteUserSub: Subscription; // getting notifications when the data changes
 
-  constructor(private authService: AuthenticatorService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    //first set the local property to know if there is a user logged in
-    this.userIsLoggedIn = this.authService.userIsLoggedIn();
-
-    //subscribe to changes
-    // console.log('onInit- home page: userIsLoggedIn = ' + this.userIsLoggedIn);
-    this.loginChangeSub = this.authService.loginDataChanged.subscribe(
-      (isLoggedIn: boolean) => {
-        this.userIsLoggedIn = isLoggedIn;
-        // console.log('home page: userIsLoggedIn = ' + this.userIsLoggedIn);
+    //subscribe to user log ins
+    this.siteUserSub = this.authService.siteUser.subscribe(responseData => {
+      if (this.authService.siteUser.value !== null) {
+        console.log('home page - user is logged in');
+        console.log(this.authService.siteUser.value);
+        this.userIsLoggedIn = true;
+      } else {
+        this.userIsLoggedIn = false;
       }
-    );
-    // console.log("checking if the auth service has data " + this.authService.userIsLoggedIn());
+    });
+
   }
 
   ngOnDestroy(): void {
-    this.loginChangeSub.unsubscribe();
+    this.siteUserSub.unsubscribe();
   }
 
 }

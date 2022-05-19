@@ -1,25 +1,27 @@
 <div class="container" >
   <div class="row ">
     <div class="col-sm-10  ">
+      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div formGroupName="userData">
          <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username">Email</label>
           <input
             type="text"
-            id="username"
-            formControlName="username"
+            id="email"
+            formControlName="email"
             class="form-control">
             <span
-            *ngIf="!loginForm.get('userData.username').valid && loginForm.get('userData.username').touched"
+            *ngIf="!loginForm.get('userData.email').valid && loginForm.get('userData.email').touched"
             class="help-block">
             <span
-            *ngIf="loginForm.get('userData.username')
-              .errors['required']">
+            *ngIf="loginForm.get('userData.eamil').errors['required']">
               The name is required!
           </span>
           </span>
         </div>
+
         <div class="form-group">
           <label for="password">Password</label>
           <input
@@ -31,12 +33,34 @@
             *ngIf="!loginForm.get('userData.password').valid && loginForm.get('userData.password').touched"
             class="help-block">Please enter a password!</span>
         </div>
+
+        <div class="form-group" *ngIf="formMode !='login'">
+          <label for="displayName">Display Name</label>
+          <input type="text" id="displayName" formControlName="displayName" class="form-control">
+          <span *ngIf="!loginForm.get('userData.displayName').valid && loginForm.get('userData.displayName').touched"
+            class="help-block">Please enter a Display Name for  your account!</span>
+        </div>
+
         </div>
         <span
-        *ngIf="loginForm.valid && loginForm.touched && credentialsFailed"
-        class="help-block">Login failed. Check Uername and Password.</span>
-        <button class="btn btn-primary float-right" style="margin-bottom: 5px;" type="submit">Login</button>
+        *ngIf="formMode==='login' && loginForm.get('userData.email').valid &&
+          loginForm.get('userData.email').touched &&
+          loginForm.get('userData.password').valid && loginForm.get('userData.password').touched
+          && credentialsFailed && error !== null"
+        class="help-block">Login failed.<br> Reason: {{error}} </span>
+        <span class="help-block" *ngIf="!userIsEnabled">Login failed. Reason: User is disabled.</span>
+
+        <div>
+          <span><a routerLink="" class="btn-link" (click)="toggleFormMode()">{{formMode=='login' ? 'Register' : 'Cancel'}}</a></span>
+          <button class="btn btn-primary float-right" style="margin-bottom: 5px;"
+          [disabled]="(!loginForm.get('userData.email').valid && loginForm.get('userData.email').touched) ||
+            (!loginForm.get('userData.password').valid && loginForm.get('userData.password').touched) ||
+            (formMode=='register' && !loginForm.get('userData.displayName').valid && !loginForm.get('userData.displayName').touched)"
+          type="submit">{{formMode=='login' ? 'Login' : 'Register'}}</button>
+
+        </div>
       </form>
+
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthenticatorService } from '../authenticator.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,32 +12,39 @@ export class NavbarComponent implements OnInit, OnDestroy {
   loggedInUserName: string = "";
   hasSectorAccess: boolean = false;
   hasStockListAccess: boolean = false;
-  private loginChangeSub: Subscription; // getting notifications when the data changes
+  hasAdminAccess: boolean = false;
+  private siteUserSub: Subscription; // getting notifications when the data changes
 
 
-  constructor(private authService: AuthenticatorService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.loginChangeSub = this.authService.loginDataChanged.subscribe(
-      (isLoggedIn: boolean) => {
-        this.userIsLoggedIn = isLoggedIn;
-        this.loggedInUserName = this.authService.getLoggedInUserName();
-        this.hasSectorAccess = this.authService.canAccessSectors();
-        this.hasStockListAccess = this.authService.canAccessStockList();
-
+    this.siteUserSub = this.authService.siteUser.subscribe(responseData => {
+      if (!!this.authService.siteUser.value) {
+        this.loggedInUserName = this.authService.getDisplayName();
+        this.userIsLoggedIn = true;
+        this.hasSectorAccess = this.authService.isSubscriber();
+        this.hasStockListAccess = this.authService.isSubscriber();
+        this.hasAdminAccess = this.authService.isAdmin();
+      } else {
+        // no use is logged in
+        this.loggedInUserName = '';
+        this.userIsLoggedIn = false;
+        this.hasSectorAccess = false;
+        this.hasStockListAccess = false;
+        this.hasAdminAccess = false;
       }
+    }
     );
   }
 
   ngOnDestroy(): void {
-    this.loginChangeSub.unsubscribe();
+    this.siteUserSub.unsubscribe();
   }
 
   onLogOutRequested(){
     this.authService.logout();
     this.loggedInUserName = "";
-    this.hasSectorAccess = false;
-    // this.hasStockListAccess = false;
   }
 
 }

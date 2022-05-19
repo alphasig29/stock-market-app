@@ -32,7 +32,7 @@ export class StockCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('Card ngOnInit()');
+
   }
 
   cardClicked() {

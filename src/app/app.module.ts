@@ -9,10 +9,11 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { StockCardComponent } from './shared/stock-card/stock-card.component';
 import { HttpClientModule } from '@angular/common/http';
-import { Constants } from './config/constants';
 import { LoginComponent } from './home-page/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RandomQuoteComponent } from './shared/random-quote/random-quote.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AdminComponent } from './admin/admin-component/admin-component.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { RandomQuoteComponent } from './shared/random-quote/random-quote.compone
     FooterComponent,
     StockCardComponent,
     LoginComponent,
-    RandomQuoteComponent
+    RandomQuoteComponent,
+    LoadingSpinnerComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
