@@ -1,0 +1,77 @@
+h2 span {
+  color: #fff;
+  /* padding: 3px 6px; */
+  display: table-cell;
+  font-size: 2em;
+  cursor: pointer;
+  opacity: 0;
+}
+
+h2 span {
+  animation: move-text-color .7s forwards;
+  cursor: pointer;
+}
+
+@keyframes move-text-color {
+  0% {
+    bottom: -0.2em;
+    opacity: 1;
+    color: blue;
+    transform: translateY(0);
+  }
+
+  50% {
+    bottom: 0.2em;
+    color: lightblue;
+    transform: translateY(-30px);
+  }
+
+  100% {
+    bottom: 0;
+    opacity: 1;
+    color: white;
+    transform: translateY(0);
+  }
+}
+
+h2 span:nth-child(1) {
+  animation-delay: .1s;
+}
+
+h2 span:nth-child(2) {
+  animation-delay: .15s;
+}
+h2 span:nth-child(3) {
+  animation-delay: .2s;
+}
+h2 span:nth-child(4) {
+  animation-delay: .25s;
+}
+h2 span:nth-child(5) {
+  animation-delay: .3s;
+}
+h2 span:nth-child(6) {
+  animation-delay: .35s;
+}
+h2 span:nth-child(7) {
+  animation-delay: .4s;
+}
+h2 span:nth-child(8) {
+  animation-delay: .45s;
+}
+h2 span:nth-child(9) {
+  animation-delay: .5s;
+}
+h2 span:nth-child(10) {
+  animation-delay: .55s;
+}
+h2 span:nth-child(11) {
+  animation-delay: .6s;
+}
+h2 span:nth-child(12) {
+  animation-delay: .65s;
+}
+h2 span:nth-child(13) {
+  animation-delay: .7s;
+}
+
