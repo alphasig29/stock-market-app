@@ -1,3 +1,5 @@
+// This is no longer used. It was just a stub put in to plan/show initial login capabilities.
+
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { tap, delay } from 'rxjs/operators';

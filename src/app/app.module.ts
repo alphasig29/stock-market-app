@@ -14,6 +14,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RandomQuoteComponent } from './shared/random-quote/random-quote.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AdminComponent } from './admin/admin-component/admin-component.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StockGridComponent } from './stocks/stock-grid/stock-grid.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -27,14 +32,19 @@ import { AdminComponent } from './admin/admin-component/admin-component.componen
     LoginComponent,
     RandomQuoteComponent,
     LoadingSpinnerComponent,
-    AdminComponent
+    AdminComponent,
+    StockGridComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

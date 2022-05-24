@@ -3,7 +3,7 @@ import { StockQuote } from "../shared/models/stock-quote.model";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { catchError, throwError, map, Observable, Subject } from "rxjs";
 import { Constants } from "../config/constants";
-import { APIAllSEctorStockQuote} from "../shared/models/api-stock-quote.model"
+import { APIAllSectorStockQuote} from "../shared/models/api-stock-quote.model"
 import { StockAPIService } from "../shared/api/stock-api-service";
 
 
@@ -15,7 +15,7 @@ import { StockAPIService } from "../shared/api/stock-api-service";
 export class SectorDataService{
   // provide a Subject to subscribe to
   sectorDataChanged = new Subject<StockQuote[]>();
-  private refressedSectorData: APIAllSEctorStockQuote[];
+  private refreshedSectorData: APIAllSectorStockQuote[];
 
   private sectorData: StockQuote[] = [
     new StockQuote('Cons Disc', 'XLY', 175.70, -0.45, -0.26, 175.96, 179.78, 179.48, 176.78, 0, 0, 0),
@@ -34,8 +34,7 @@ export class SectorDataService{
   private sp500Data: StockQuote =
     new StockQuote('S&P 500', 'SPY', 439.67, -0.25, -0.06, 439.39, 445.00, 447.57, 44.11, 0, 0, 0);
 
-  constructor(private config: Constants,
-    private stockApiService: StockAPIService) { }
+  constructor(private stockApiService: StockAPIService) { }
 
   getSectorData(): StockQuote[] {
     // sort the array by % change
@@ -58,8 +57,8 @@ export class SectorDataService{
   refreshSectorData() {
       // send request to get current data
     this.stockApiService.getAllSectorData().subscribe(returnData => {
-      this.refressedSectorData = returnData;
-      this.loadSectorArrayWithNewData(this.sectorData,this.refressedSectorData);
+      this.refreshedSectorData = returnData;
+      this.loadSectorArrayWithNewData(this.sectorData,this.refreshedSectorData);
       // sort the array by % change
       this.sectorData = this.sortArray(this.sectorData);
       // return a copy of the data to prevent external updates
@@ -71,7 +70,7 @@ export class SectorDataService{
     }
 
     private loadSectorArrayWithNewData(sourceArray: StockQuote[],
-      newDataArray: APIAllSEctorStockQuote[]){
+      newDataArray: APIAllSectorStockQuote[]){
       // loop through the newDataArray
       Object.keys(newDataArray).forEach((key) => {
         //locate the object[key=symbol] in the source Array

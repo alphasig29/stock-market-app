@@ -1,0 +1,87 @@
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Symbol</th>
+      <td mat-cell *matCellDef="let row">{{row.symbol | uppercase}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Co. Name</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- curPrice Column -->
+    <ng-container matColumnDef="curPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+      <td mat-cell *matCellDef="let row">{{row.curPrice}}</td>
+    </ng-container>
+
+    <!-- curPriceChange Column -->
+    <ng-container matColumnDef="curPriceChange">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Chg $</th>
+      <td mat-cell *matCellDef="let row">{{row.curPriceChange}}</td>
+    </ng-container>
+
+    <!-- curPercentChange Column -->
+    <ng-container matColumnDef="curPercentChange">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Chg %</th>
+      <td mat-cell *matCellDef="let row">{{row.curPercentChange}}</td>
+    </ng-container>
+
+    <!-- previousClose Column -->
+    <ng-container matColumnDef="previousClose">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Prev Close</th>
+      <td mat-cell *matCellDef="let row">{{row.previousClose}}</td>
+    </ng-container>
+
+    <!-- openPrice Column -->
+    <ng-container matColumnDef="openPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Open $</th>
+      <td mat-cell *matCellDef="let row">{{row.openPrice}}</td>
+    </ng-container>
+
+    <!-- dayLow Column -->
+    <ng-container matColumnDef="dayLow">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Day Low</th>
+      <td mat-cell *matCellDef="let row">{{row.dayLow}}</td>
+    </ng-container>
+
+    <!-- dayHigh Column -->
+    <ng-container matColumnDef="dayHigh">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Day Hhigh</th>
+      <td mat-cell *matCellDef="let row">{{row.dayHigh}}</td>
+    </ng-container>
+
+    <!-- week52Low Column -->
+    <ng-container matColumnDef="week52Low">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>52w Low</th>
+      <td mat-cell *matCellDef="let row">{{row.week52Low}}</td>
+    </ng-container>
+
+    <!-- week52High Column -->
+    <ng-container matColumnDef="week52High">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>52w High</th>
+      <td mat-cell *matCellDef="let row">{{row.week52High}}</td>
+    </ng-container>
+
+    <!-- ytdChange Column -->
+    <ng-container matColumnDef="ytdChange">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>YTD Chg</th>
+      <td mat-cell *matCellDef="let row">{{row.ytdChange}}</td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data?.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      aria-label="Select page">
+  </mat-paginator>
+</div>

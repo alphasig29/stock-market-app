@@ -1,19 +1,28 @@
-<div class="col-md-12 component-body">
-  <div class="container-fluid" >
-    <div style="background-color: #e3f2fd;">
-      <h1 class="text-center">Your Stock Watch List</h1>
-      <hr>
-    </div>
+<div class="container">
+  <div class="row" style="background-color: #e3f2fd;">
+    <div class="col-12">
 
-    <div class="" >
-      <p>stock info will be here</p>
-      <p>stock info will be here</p>
-      <p>stock info will be here</p>
-      <p>stock info will be here</p>
-      <p>stock info will be here</p>
-      <p>stock info will be here</p>
-      <p>stock info will be here</p>
+
+      <div class="float-left">
+        <h1 class="text-center">Stock Watch List</h1>
+      </div>
+
+      <div class="float-right">
+        <div class="form-group">
+          <form (ngSubmit)="onSubmit()" #addStock="ngForm">
+            <div class="input-group" style="margin-top: 10px;">
+              <input type="text" id="stockSymbol" class="form-control" ngModel name="stockSymbol" required>
+              <!-- <button class="btn btn-primary form-control input-group-btn" type="submit" [disabled]="!addStock.valid">Add Stock</button> -->
+              <button class="btn btn-primary form-control input-group-btn" type="submit" style="margin-left: 5px;" [disabled]="!addStock.valid">Add Stock</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
     </div>
-  </div>
+  </div> <!-- row -->
+
+  <!-- place the grid data here -->
+  <app-stock-grid></app-stock-grid>
 </div>
 

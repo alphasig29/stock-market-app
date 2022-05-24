@@ -115,14 +115,6 @@ export class AuthService {
     }
   }
 
-  // isEnabled() {
-  //   if (!!this.siteUser.value) {
-  //     return !this.isDisabled;
-  //   } else {
-  //     return true;
-  //   }
-  // }
-
   isSubscriber() {
     if (!!this.siteUser.value) {
       return this.siteUser.value.userAuthorizations.subscriber;
@@ -157,8 +149,6 @@ export class AuthService {
 
   }
 
-
-
   private fetchUserProfileFromDB(userID: string){
     console.log("fetch userId is " + userID);
     const url = `${environment.FIREBASE_URL}user/${userID}/userdata.json`;
@@ -170,7 +160,6 @@ export class AuthService {
       return userData;
     }));
   }
-
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!'
@@ -201,5 +190,13 @@ export class AuthService {
     }, expirationDuration);
   }
 
+  // retrieve all the stock info for the User's watchlist
+  getStockWatchList() {
+     if (!!this.siteUser.value) {
+      return this.siteUser.value.userStocks;
+    } else {
+      return null;
+    }
+  }
 
 }

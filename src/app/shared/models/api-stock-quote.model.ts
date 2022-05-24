@@ -1,6 +1,10 @@
 // using this class to create the layout of the JSON
 // object that the API will be returning.
-export class APIAllSEctorStockQuote{
+export class APIAllSectorStockQuote{
+  [key:string]: {quote: APIStockQuote};
+}
+
+export class APIStockQuotes{
   [key:string]: {quote: APIStockQuote};
 }
 
