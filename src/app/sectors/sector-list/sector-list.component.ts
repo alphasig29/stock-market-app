@@ -38,10 +38,10 @@ export class SectorListComponent implements OnInit, OnDestroy {
 
   }
 
-  onRefreshData(){
-    this.sectorQuoteService.refreshSectorData();
+  // onRefreshData(){
+  //   this.sectorQuoteService.refreshSectorData();
 
-  }
+  // }
 
   ngOnDestroy(): void {
     this.sectorChangeSub.unsubscribe();

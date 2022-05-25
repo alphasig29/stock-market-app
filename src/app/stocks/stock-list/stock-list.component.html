@@ -9,11 +9,11 @@
 
       <div class="float-right">
         <div class="form-group">
-          <form (ngSubmit)="onSubmit()" #addStock="ngForm">
+          <form (ngSubmit)="onAddNewStock()" #addStockForm="ngForm">
             <div class="input-group" style="margin-top: 10px;">
               <input type="text" id="stockSymbol" class="form-control" ngModel name="stockSymbol" required>
               <!-- <button class="btn btn-primary form-control input-group-btn" type="submit" [disabled]="!addStock.valid">Add Stock</button> -->
-              <button class="btn btn-primary form-control input-group-btn" type="submit" style="margin-left: 5px;" [disabled]="!addStock.valid">Add Stock</button>
+              <button class="btn btn-primary form-control input-group-btn" type="submit" style="margin-left: 5px;" [disabled]="!addStockForm.valid">Add Stock</button>
             </div>
           </form>
         </div>
@@ -23,6 +23,6 @@
   </div> <!-- row -->
 
   <!-- place the grid data here -->
-  <app-stock-grid></app-stock-grid>
+  <app-stock-grid [dataSource]="allStocks"></app-stock-grid>
 </div>
 

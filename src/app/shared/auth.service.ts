@@ -37,7 +37,7 @@ export class AuthService {
         new UserRoles(true, false, true, true),
         []);
       // push the new user data to the database
-      this.pushNewUserProfileToDB(newSiteUser);
+      this.pushUserProfileToDB(newSiteUser);
       // emit the new user
       this.siteUser.next(newSiteUser);
       this.userIsEnabled.next(true);
@@ -139,7 +139,7 @@ export class AuthService {
     }
   }
 
-  private pushNewUserProfileToDB(user: SiteUser) {
+  private pushUserProfileToDB(user: SiteUser) {
     console.log(user);
     const url = `${environment.FIREBASE_URL}user/${user.userCredentials.userId}/userdata.json`;
     this.http.put(url,
@@ -148,6 +148,8 @@ export class AuthService {
     });
 
   }
+
+
 
   private fetchUserProfileFromDB(userID: string){
     console.log("fetch userId is " + userID);
@@ -192,11 +194,40 @@ export class AuthService {
 
   // retrieve all the stock info for the User's watchlist
   getStockWatchList() {
-     if (!!this.siteUser.value) {
+    if (!!this.siteUser.value) {
+      console.log('auth service: believes that user stocks is this', this.siteUser.value.userStocks);
       return this.siteUser.value.userStocks;
     } else {
       return null;
     }
   }
 
+  // allow a new stock to be added to the user's profile
+  addStockToWatchList(stockSymbol: string) {
+    if (!!this.siteUser.value) {
+      stockSymbol = stockSymbol.toUpperCase();
+      console.log('adding new stock to watch list', stockSymbol);
+      // have a site user, check for existing stocks
+      if (this.siteUser.value.userStocks.length === 0) {
+        // user has no stocks, add one
+        this.siteUser.value.userStocks = [stockSymbol];
+        // now push the new data to the backend DB (firebase)
+        this.pushUserProfileToDB(this.siteUser.value);
+        console.log('pushed 1 stock to empty watch list');
+      } else {
+        // user has some stocks, add this one if it isn't in the list
+        console.log('auth svc: index of new symbol =', this.siteUser.value.userStocks.indexOf(stockSymbol));
+        if (this.siteUser.value.userStocks.indexOf(stockSymbol) === -1) {
+          // add this new symblo to the user's list
+          this.siteUser.value.userStocks.push(stockSymbol);
+          // now push the new data to the backend DB (firebase)
+          this.pushUserProfileToDB(this.siteUser.value);
+          console.log('pushed 1 stock to existing watch list');
+        }
+       }
+    } else {
+      // no valid user logged in, do nothing
+      // return null;
+    }
+  }
 }

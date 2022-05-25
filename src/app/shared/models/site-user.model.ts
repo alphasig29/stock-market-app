@@ -83,7 +83,7 @@ export class UserRoles {
   }
 
 export class UserStocks {
-  constructor(public symbol: string[]) { }
+  constructor(public symbols: string[]) { }
 }
 
 export class UserAuthData {
