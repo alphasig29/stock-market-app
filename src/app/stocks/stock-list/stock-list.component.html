@@ -11,9 +11,10 @@
         <div class="form-group">
           <form (ngSubmit)="onAddNewStock()" #addStockForm="ngForm">
             <div class="input-group" style="margin-top: 10px;">
-              <input type="text" id="stockSymbol" class="form-control" ngModel name="stockSymbol" required>
+              <input type="text" id="stockSymbol" class="form-control" placeholder=" enter symbol" (keydown)="addStockSymbolExists = true" ngModel name="stockSymbol" required>
               <!-- <button class="btn btn-primary form-control input-group-btn" type="submit" [disabled]="!addStock.valid">Add Stock</button> -->
               <button class="btn btn-primary form-control input-group-btn" type="submit" style="margin-left: 5px;" [disabled]="!addStockForm.valid">Add Stock</button>
+              <span class="help-block" *ngIf="!addStockSymbolExists && addStockForm.valid">Stock Symbol does not exist.</span>
             </div>
           </form>
         </div>

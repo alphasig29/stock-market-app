@@ -16,12 +16,14 @@ export class StockListComponent implements OnInit, OnDestroy {
   private stockChangeSub: Subscription; // getting notifications when the data changes
   private timerSubscription: Subscription; // forcing new data on an interval
   @ViewChild('addStockForm') addStockForm: NgForm;
+  addStockSymbolExists: boolean = true;
 
   constructor(private stockQuoteService: StockDataService,
     private authService: AuthService,
     private config: Constants) { }
 
   ngOnInit(): void {
+
     // force the stock list to get refreshed while waiting for the timer to get it
     this.stockQuoteService.refreshStockQuotes(this.authService.getStockWatchList());
 
@@ -49,16 +51,23 @@ export class StockListComponent implements OnInit, OnDestroy {
 
 
   onAddNewStock() {
-    //get the stock symbol from the template
-    const newStockSymbol: string = this.addStockForm.value.stockSymbol;
-    // load the latest sector data via the http request
-    const symbolArray: string[] = this.authService.getStockWatchList().slice();
-    symbolArray.push(newStockSymbol);
-    this.stockQuoteService.refreshStockQuotes(symbolArray);
-    // push the new symbol to the service so it can be pused to the backend DB
-    this.authService.addStockToWatchList(newStockSymbol);
-    this.addStockForm.reset();
-
+    // first check to see if the stock symbol is valid/exists
+    if (this.stockQuoteService.stockSymbolExists(this.addStockForm.value.stockSymbol)) {
+      // this is a valid symbol....
+      this.addStockSymbolExists = true;
+      //get the stock symbol from the template
+      const newStockSymbol: string = this.addStockForm.value.stockSymbol;
+      // load the latest sector data via the http request
+      const symbolArray: string[] = this.authService.getStockWatchList().slice();
+      symbolArray.push(newStockSymbol);
+      this.stockQuoteService.refreshStockQuotes(symbolArray);
+      // push the new symbol to the service so it can be pused to the backend DB
+      this.authService.addStockToWatchList(newStockSymbol);
+      this.addStockForm.reset();
+    } else {
+      // stock symbol does not exist
+      this.addStockSymbolExists = false;
+    }
 
   }
 

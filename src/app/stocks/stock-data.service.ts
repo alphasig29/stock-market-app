@@ -24,6 +24,15 @@ export class StockDataService {
     this.stockDataChanged.next(this.stockQuotes.slice());
   }
 
+  stockSymbolExists(symbol: string): boolean {
+    let boolStockExists: boolean = false;
+    // call the Stock API to get a quick quote..
+    this.stockApiService.getStockQuote(symbol).subscribe(
+      returnData => { boolStockExists = true },
+      errorData => { boolStockExists = false });
+    return boolStockExists;
+  }
+
   refreshStockQuotes(stockList: string[]) {
     if (!(stockList.length === 0)) {
       console.log('No stocks in the wishlist!');
