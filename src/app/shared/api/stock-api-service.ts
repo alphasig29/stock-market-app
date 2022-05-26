@@ -76,7 +76,6 @@ export class StockAPIService {
         if (stockList.length > 0) {
           //build the comma seperated list of stock symbols
           const symbols: string = stockList.join(",");
-          console.log("sumbols: ", symbols);
 
           // retrieve the quotes for the selected stocks
            searchParams = searchParams.append(this.config.API_STOCK_SECTOR_PARM_NAME, symbols);

@@ -55,7 +55,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 
   onSubmit() {
-    console.log(this.loginForm.value.userData);
     // let authObservable: Observable<AuthResponseData>;
     const email = this.loginForm.value.userData.email;
     const password = this.loginForm.value.userData.password;
@@ -68,9 +67,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       // authObservable = this.authService.signUp(email, password, displayName).subscribe(resData => {
       this.userSub = this.authService.signUp(email, password, displayName).subscribe(resData => {
-        console.log('logged in' + resData);
         if (!!this.authService.siteUser.value) {
-          console.log('siteUser is not null - successful sing up')
           this.userIsLoggedIn = true;
           this.isLoading = false;
           this.credentialsFailed = false;
@@ -88,29 +85,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       const displayName = '';
       this.isLoading = true;
       this.userSub = this.authService.login(email, password).subscribe(resData => {
-        console.log('login ts userid = ' + resData.localId);
         if (this.authService.siteUser.value !== null) {
-          console.log('login ts - login is successful');
-
-          // this.userIsLoggedIn = true;
-          // this.isLoading = false;
-          // this.credentialsFailed = false;
-          // this.error = null;
-
-          // console.log('login ts - userIsEnabled ', this.userIsEnabled);
-          // if (!this.userIsEnabled) {
-          //   console.log('User has been set to disabled!');
-          //   this.userIsLoggedIn = false;
-          //   // this.isLoading = false;
-          //   this.credentialsFailed = true;
-          //   this.error = "User is disabled.";
-          // } else {
-          //   console.log('login is successful');
-          //   this.userIsLoggedIn = true;
-          //   // this.isLoading = false;
-          //   this.credentialsFailed = false;
-          //   this.error = null;
-          // }
           this.isLoading = false;
           this.credentialsFailed = false;
           this.error = null;
@@ -127,9 +102,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   }
 
-  onGetProfile() {
-    // this.authService.getUserProfile("LeXi8Z92LqWDxTaUDHyNV6Ijmdw2");
-  }
 
   ngOnDestroy(): void {
     this.userSub.unsubscribe();

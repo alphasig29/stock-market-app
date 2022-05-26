@@ -26,14 +26,16 @@ export class StockGridComponent implements AfterViewInit, OnChanges{
   }
 
   ngAfterViewInit(): void {
-    console.log('stock-grid ts - after view init', this.dataSource);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('stock-grid ts - after on Chagnes', this.dataSource);
-    this.table.dataSource = this.dataSource;
+    // make sure we have data and that the table has been initialized
+    if (!!this.dataSource && !!this.table) {
+      this.table.dataSource = this.dataSource || [];
+    }
+
   }
 }

@@ -17,9 +17,9 @@ canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean 
   const expectedRole = route.data.expectedRole;
   const siteUserData: SiteUser = this.authService.siteUser.value;
   // only allow routes if the user is authenticated and had the proper role
-  console.log("preCheck for authorization in roleGuard, site-user = ", this.authService.siteUser.value)
+  // console.log("preCheck for authorization in roleGuard, site-user = ", this.authService.siteUser.value)
   if (this.authService.siteUser.value !== null) {
-    console.log("roleGuardSErvice: requires " + expectedRole, this.authService.siteUser.value.userAuthorizations[expectedRole]);
+    // console.log("roleGuardSErvice: requires " + expectedRole, this.authService.siteUser.value.userAuthorizations[expectedRole]);
     if (this.authService.siteUser.value.userAuthorizations[expectedRole] === true &&
       this.authService.siteUser.value.userAuthorizations.enabled === true) {
       // user has the proper role to access this route, return true.

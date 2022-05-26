@@ -27,8 +27,6 @@ export class AuthService {
     return this.http.post<AuthResponseData>(this.config.API_AUTH_ENDPOINT + 'accounts:signUp?key=' + environment.API_FIREBASE_TOKEN,
       { "email": email, "password": password, "returnSecureToken": true}
     ).pipe(catchError(this.handleError), tap<AuthResponseData>(responseData => {
-      console.log('firebase return data for Sign Up: ');
-      console.log(responseData);
       // figure out the expiration date/time for the user
       const expirationDate = new Date(new Date().getTime() + (+responseData.expiresIn * 1000));
       // create a new uer
@@ -59,17 +57,11 @@ export class AuthService {
         //let's only emit the user and allow the login IF the account is enabled
         if (userData.userAuthorizations.enabled === false) {
           //throw error / alsert the user
-          console.log('user is disabled.');
+          // console.log('user is disabled.');
 
           //braocase that the new user is NOT enabled
           this.userIsEnabled.next(false);
-          // // create a new uer with no permissions
-          // const newSiteUser = new SiteUser(new UserCredentials(responseData.email,
-          // userData.userCredentials.displayName, responseData.localId, responseData.idToken, expirationDate),
-          //   new UserRoles(false,false,false,false),
-          //   userData.userStocks);
-          // this.siteUser.next(null);
-          // throw new Error('Account is disabled');
+
         } else {
           // create a new uer
           const newSiteUser = new SiteUser(new UserCredentials(responseData.email,
@@ -85,8 +77,6 @@ export class AuthService {
         }
 
       }, profileError => {
-        console.log('error retrieving user Profile from DB, login');
-        console.log(profileError);
         // if we did not get back a user profile, then create a blank/default one.
         const newSiteUser = new SiteUser(new UserCredentials(responseData.email,
           '', responseData.localId, responseData.idToken, expirationDate),
@@ -140,7 +130,7 @@ export class AuthService {
   }
 
   private pushUserProfileToDB(user: SiteUser) {
-    console.log(user);
+
     const url = `${environment.FIREBASE_URL}user/${user.userCredentials.userId}/userdata.json`;
     this.http.put(url,
       user).subscribe(response => {
@@ -152,20 +142,15 @@ export class AuthService {
 
 
   private fetchUserProfileFromDB(userID: string){
-    console.log("fetch userId is " + userID);
     const url = `${environment.FIREBASE_URL}user/${userID}/userdata.json`;
     return this.http.get<SiteUser>(url).pipe(catchError(this.handleError), tap<SiteUser>(userData => {
-      console.log('retrieved uer data from DB');
-      console.log(userData);
-      // const expirationDate = new Date(new Date().getTime() + (+this.siteUser.value.authResponseData.expiresIn * 1000));
-      // userData.authResponseData.expirationDate = expirationDate;
-      return userData;
+    return userData;
     }));
   }
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!'
-    console.log(errorRes);
+    // console.log(errorRes);
     if (!errorRes.error || !errorRes.error.error) {
       return throwError(errorMessage);
     }
@@ -195,7 +180,6 @@ export class AuthService {
   // retrieve all the stock info for the User's watchlist
   getStockWatchList() {
     if (!!this.siteUser.value) {
-      console.log('auth service: believes that user stocks is this', this.siteUser.value.userStocks);
       return this.siteUser.value.userStocks;
     } else {
       return null;
@@ -206,23 +190,22 @@ export class AuthService {
   addStockToWatchList(stockSymbol: string) {
     if (!!this.siteUser.value) {
       stockSymbol = stockSymbol.toUpperCase();
-      console.log('adding new stock to watch list', stockSymbol);
+      // console.log('adding new stock to watch list', stockSymbol);
       // have a site user, check for existing stocks
       if (this.siteUser.value.userStocks.length === 0) {
         // user has no stocks, add one
         this.siteUser.value.userStocks = [stockSymbol];
         // now push the new data to the backend DB (firebase)
         this.pushUserProfileToDB(this.siteUser.value);
-        console.log('pushed 1 stock to empty watch list');
+
       } else {
         // user has some stocks, add this one if it isn't in the list
-        console.log('auth svc: index of new symbol =', this.siteUser.value.userStocks.indexOf(stockSymbol));
         if (this.siteUser.value.userStocks.indexOf(stockSymbol) === -1) {
           // add this new symblo to the user's list
           this.siteUser.value.userStocks.push(stockSymbol);
           // now push the new data to the backend DB (firebase)
           this.pushUserProfileToDB(this.siteUser.value);
-          console.log('pushed 1 stock to existing watch list');
+
         }
        }
     } else {

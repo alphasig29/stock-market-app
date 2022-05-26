@@ -58,7 +58,7 @@ export class SectorDataService{
       // send request to get current data
     this.stockApiService.getAllSectorData().subscribe(returnData => {
       this.refreshedSectorData = returnData;
-      this.loadSectorArrayWithNewData(this.sectorData,this.refreshedSectorData);
+      this.loadSectorArrayWithNewData(this.sectorData, this.refreshedSectorData);
       // sort the array by % change
       this.sectorData = this.sortArray(this.sectorData);
       // return a copy of the data to prevent external updates

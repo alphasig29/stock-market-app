@@ -31,9 +31,7 @@ export class StockListComponent implements OnInit, OnDestroy {
     this.allStocks = this.stockQuoteService.getStockQuotes();
     this.stockChangeSub = this.stockQuoteService.stockDataChanged.subscribe(
       (newStockWatchListData: StockQuote[]) => {
-        console.log('Stock-list ts - new stock data just came in ', newStockWatchListData);
         this.allStocks = newStockWatchListData;
-        console.log('stock-list ts - allStocks now =', this.allStocks);
       }
     );
     //setting up a timer to get data incrementally (every 60 sec)

@@ -18,8 +18,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
     //subscribe to user log ins
     this.siteUserSub = this.authService.siteUser.subscribe(responseData => {
       if (this.authService.siteUser.value !== null) {
-        console.log('home page - user is logged in');
-        console.log(this.authService.siteUser.value);
         this.userIsLoggedIn = true;
       } else {
         this.userIsLoggedIn = false;
