@@ -9,13 +9,27 @@
 
       <div class="float-right">
         <div class="form-group">
-          <form (ngSubmit)="onAddNewStock()" #addStockForm="ngForm">
+          <form (ngSubmit)="onAddNewStock()" #addStockForm="ngForm">  <!-- #addStockForm="ngForm" -->
             <div class="input-group" style="margin-top: 10px;">
-              <input type="text" id="stockSymbol" class="form-control" placeholder=" enter symbol" (keydown)="addStockSymbolExists = true" ngModel name="stockSymbol" required>
-              <!-- <button class="btn btn-primary form-control input-group-btn" type="submit" [disabled]="!addStock.valid">Add Stock</button> -->
-              <button class="btn btn-primary form-control input-group-btn" type="submit" style="margin-left: 5px;" [disabled]="!addStockForm.valid">Add Stock</button>
-              <span class="help-block" *ngIf="!addStockSymbolExists && addStockForm.valid">Stock Symbol does not exist.</span>
+              <mat-form-field >
+                <!-- <input type="text" id="stockSymbol" class="form-control" placeholder="enter symbol"
+                  [formControl]="addStockSymbolControl" name="stockSymbol" required [matAutocomplete]="auto"> -->
+              <input type="text" class="form-control" placeholder="enter symbol" matInput [formControl]="addStockSymbolControl" name="stockSymbol" required [matAutocomplete]="auto">  <!-- ngModel -->
+                <mat-autocomplete   #auto="matAutocomplete"  >
+                  <!-- autoActiveFirstOption [displayWith]="displayStockListFn" -->
+                  <mat-option *ngFor="let option of filteredSymbols | async" [value]="option['ACT Symbol']">
+                    {{ option['ACT Symbol'] }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+
+              <button class="btn btn-primary form-control input-group-btn" type="submit" [disabled]="!addStockSymbolControl.valid" style="margin-left: 5px; margin-top: 20px;" >Add Stock</button>
+              <!-- [disabled]="!addStockForm.valid" -->
+              <!-- <span class="help-block" *ngIf="!addStockSymbolExists && addStockForm.valid">Stock Symbol does not exist.</span> -->
             </div>
+            <mat-error *ngIf="addStockSymbolControl.touched &&!addStockSymbolControl.valid">
+              <div>Symbol not recognized.</div>
+            </mat-error>
           </form>
         </div>
       </div>
@@ -24,6 +38,7 @@
   </div> <!-- row -->
 
   <!-- place the grid data here -->
-  <app-stock-grid [dataSource]="allStocks"></app-stock-grid>
+  <app-stock-grid></app-stock-grid>
+  <!-- <app-stock-grid [newStockDataSource]="allStocks"></app-stock-grid> -->
 </div>
 

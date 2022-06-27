@@ -6,9 +6,11 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Constants } from "src/app/config/constants";
 import { APIAllSectorStockQuote } from "../models/api-stock-quote.model";
+import { StockList } from "../models/stock-list.model";
 import { catchError, throwError, map } from "rxjs";
 import { environment } from "src/environments/environment";
 import { SectorDataService } from "src/app/sectors/sector-data.service";
+import stocklist from '../../../assets/nyse-listed.json';
 
  enum RequestType {
   SectorData,
@@ -60,6 +62,17 @@ export class StockAPIService {
       return null;
     }
   }
+
+
+  // even though the list is currently a JSON file, I want to have an API call for it
+  // for future implementation... the sandbox used here doesn't allow this feature for free.. :(
+  getAllStockSymbolList(): StockList[] {
+    return stocklist;
+    // this.http.get<StockList[]>('assets/nyse-listed.json').subscribe(data => {
+    //   return data;
+    // })
+  }
+
 
   private retrieveStockDataFromAPI(dataOption: RequestType, stockList?: string[]) {
     // build the list of params to pass to retrieve all sector data

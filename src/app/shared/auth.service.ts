@@ -213,4 +213,24 @@ export class AuthService {
       // return null;
     }
   }
+
+  // allow a stock to be removed from the user's stock watch list
+  removeStockFromWatchList(stockSymbol: string) {
+    if (!!this.siteUser.value) {
+      console.log('Before delete stock', this.siteUser.value.userStocks);
+      // have a valid user
+      stockSymbol = stockSymbol.toUpperCase();
+      // user has some stocks, locate this one if it is in the list
+      const stockIndex = this.siteUser.value.userStocks.indexOf(stockSymbol);
+      if (stockIndex !== -1) {
+        // romove it
+        this.siteUser.value.userStocks.splice(stockIndex, 1);
+        // now push the new stock list to the backend DB (firebase)
+        this.pushUserProfileToDB(this.siteUser.value);
+      }
+      console.log('After delete stock', this.siteUser.value.userStocks);
+    }
+
+  }
+
 }

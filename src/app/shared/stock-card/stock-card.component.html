@@ -1,5 +1,5 @@
 <div class="">  <!--col-mb-4 -->
-  <div class="card text-white" 
+  <div class="card text-white"
 
       [ngClass]="{'bg-success': stockQuote.curPercentChange >= 0,
         'bg-danger': stockQuote.curPercentChange < 0}">
@@ -8,7 +8,7 @@
 
         <h5 class="card-subtitle mb-2">{{stockQuote.curPercentChange!==0 ? stockQuote.curPercentChange.toFixed(2) + ' %' : 'UNCH'}}</h5>
         <div class="list-group list-group flush">
-          <p class="card-tex tab">Symbol: {{stockQuote.symbol}}</p>
+          <p class="card-text tab">Symbol: {{stockQuote.symbol}}</p>
           <p class="card-text tab">Open: {{stockQuote.openPrice}}</p>
           <p class="card-text tab">Low: {{stockQuote.dayLow}}</p>
           <p class="card-text tab">High: {{stockQuote.dayHigh}}</p>

@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
+
 // TODO: Replace this with your own data model type
 export interface StockGridItem {
   symbol: string;
@@ -41,7 +42,8 @@ const EXAMPLE_DATA: StockGridItem[] = [
  * (including sorting, pagination, and filtering).
  */
 export class StockGridDataSource extends DataSource<StockGridItem> {
-  data: StockGridItem[] = EXAMPLE_DATA;
+  // data: StockGridItem[] = EXAMPLE_DATA;
+  data: StockGridItem[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
@@ -55,6 +57,7 @@ export class StockGridDataSource extends DataSource<StockGridItem> {
    * @returns A stream of the items to be rendered.
    */
   connect(): Observable<StockGridItem[]> {
+    console.log('calling connect()');
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
@@ -91,15 +94,22 @@ export class StockGridDataSource extends DataSource<StockGridItem> {
    * this would be replaced by requesting the appropriate data from the server.
    */
   private getSortedData(data: StockGridItem[]): StockGridItem[] {
+    console.log('Sorting grid start');
+    // console.log('Sorting grid', this.sort?.active);
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
+      console.log('getSortedData:  returning data and not proceeding');
+      console.log('!this.sort', !this.sort);
+      console.log('!this.sort.active', !this.sort.active);
+      console.log('this.sort.direction', this.sort.direction);
       return data;
     }
 
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
+      console.log('Sorting grid', this.sort?.active);
       switch (this.sort?.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
         case 'symbol': return compare(a.symbol, b.symbol, isAsc);
+        case 'name': return compare(a.name, b.name, isAsc);
         case 'curPrice': return compare(+a.curPrice, +b.curPrice, isAsc);
         case 'curPriceChange': return compare(+a.curPriceChange, +b.curPriceChange, isAsc);
         case 'curPercentChange': return compare(+a.curPercentChange, +b.curPercentChange, isAsc);

@@ -60,12 +60,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     const password = this.loginForm.value.userData.password;
     if(this.formMode === 'register') {
       // create a new user in the sytem
-
-
       const displayName = this.loginForm.value.userData.displayName;
       this.isLoading = true;
 
-      // authObservable = this.authService.signUp(email, password, displayName).subscribe(resData => {
       this.userSub = this.authService.signUp(email, password, displayName).subscribe(resData => {
         if (!!this.authService.siteUser.value) {
           this.userIsLoggedIn = true;
