@@ -1,1 +1,71 @@
+.btn.btn-social-icon {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin-left: 8px;
+}
+.btn.btn-rounded {
+  border-radius: 50px;
+}
+.btn-outline-facebook {
+  border: 1px solid #3b579d;
+  color: #3b579d;
+}
 
+
+
+.btn-facebook {
+  background: #3b579d;
+  color: #ffffff;
+}
+
+/* .fa-facebook {
+  background: #3B5998;
+  color: white;
+} */
+
+.btn-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.btn-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.btn-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.btn-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.btn-instagram {
+  background: #125688;
+  color: white;
+}
+
+.btn-reddit {
+  background: #ff5700;
+  color: white;
+}
+
+.btn-github {
+  background: #2c4762;
+  color: white;
+}
+
+/* media icons rotating 360 degrees */
+/* sliderrevolution.com/resources/css-link-hover-effects/ */
+a .icon {
+  transition: .5s;
+}
+
+a:hover .icon {
+  /* color: #fff; */
+  transform: rotateY(360deg);
+}
