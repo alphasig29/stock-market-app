@@ -30,3 +30,20 @@ body {
   margin: 0 auto;
   text-align: center;
 }
+
+#back-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  background-attachment: fixed;
+}
+
+.image {
+  background-image: url("../assets/background2.jpg");
+  background-size: cover;
+  background-size: 100%;
+  min-height: 700px;
+  width: auto;
+  z-index: 0;
+  /* opacity: 50%; */
+}

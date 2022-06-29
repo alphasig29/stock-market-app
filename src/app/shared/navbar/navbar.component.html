@@ -17,31 +17,53 @@
     <ul class="navbar-nav">
       <!-- Main Nav links -->
       <li class="nav-item ">
-        <a class="nav-link fancy-link" *ngIf="hasSectorAccess" style="cursor:pointer" routerLink="/sectors" routerLinkActive="active">Sectors</a>
+        <div class="nav-icon-item">
+
+        <a mat-list-item class="nav-link fancy-link" *ngIf="hasSectorAccess" style="cursor:pointer" routerLink="/sectors" routerLinkActive="active">
+          <span class="material-icons">
+            alarm_on
+          </span> <br>Sectors</a>
+        </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link fancy-link" *ngIf="hasStockListAccess"  style="cursor:pointer" routerLink="/stocks" routerLinkActive="active">My Stonks</a>
+        <a class="nav-link fancy-link" *ngIf="hasStockListAccess"  style="cursor:pointer" routerLink="/stocks" routerLinkActive="active">
+          <span class="material-icons">
+            language
+          </span> <br>My Stonks</a>
       </li>
       <li class="nav-item">
         <a class="nav-link fancy-link" *ngIf="hasAdminAccess" style="cursor:pointer" routerLink="/admin"
-          routerLinkActive="active">Administration</a>
+          routerLinkActive="active">
+          <span class="material-icons">
+            lock_open
+          </span> <br>Administration</a>
       </li>
     </ul>
   </div>
   <div class="navbar-right" *ngIf="!userIsLoggedIn">
     <ul class="navbar-nav">
       <li class="nav-item ">
+        <!-- <i class="material-icons" style="color: white; font-size: 36px;">alarm</i> -->
+        <!-- <mat-icon class="md-36" style="color: white;">alarm_on</mat-icon> -->
         <a class="nav-link fancy-link" style="cursor:pointer" routerLink="/" routerLinkActive="active"
-            >login</a>
+            > <span class="material-icons">
+              thumb_up
+            </span> <br>
+            login</a>
+
+
       </li>
     </ul>
     </div>
     <div class="navbar-right" *ngIf="userIsLoggedIn">
     <ul class="navbar-nav">
-      <span class="nav-link" *ngIf="loggedInUserName!=''" style="color: white">Welcome  {{ loggedInUserName }}</span>
+      <h2><span class="nav-link" *ngIf="loggedInUserName!=''" style="color: white">Welcome  {{ loggedInUserName }}</span></h2>
+
       <li class="nav-item">
         <a class="nav-link fancy-link" style="cursor:pointer" routerLink="" routerLinkActive="active"
-             (click)="onLogOutRequested()">logout</a>
+             (click)="onLogOutRequested()"><span class="material-icons">
+              thumb_down
+            </span> <br>logout</a>
       </li>
     </ul>
 

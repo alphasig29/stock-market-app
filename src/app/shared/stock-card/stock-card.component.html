@@ -4,9 +4,10 @@
       [ngClass]="{'bg-success': stockQuote.curPercentChange >= 0,
         'bg-danger': stockQuote.curPercentChange < 0}">
       <div class="card-body">
-        <h4 class="card-title">{{stockQuote.name}}</h4>
+        <h1 class="card-title">{{stockQuote.name}}</h1>
 
-        <h5 class="card-subtitle mb-2">{{stockQuote.curPercentChange!==0 ? stockQuote.curPercentChange.toFixed(2) + ' %' : 'UNCH'}}</h5>
+        <h1 class="card-subtitle mb-2">{{stockQuote.curPercentChange!==0 ? stockQuote.curPercentChange.toFixed(2) + ' %' : 'UNCH'}}</h1>
+        <br>
         <div class="list-group list-group flush">
           <p class="card-text tab">Symbol: {{stockQuote.symbol}}</p>
           <p class="card-text tab">Open: {{stockQuote.openPrice}}</p>

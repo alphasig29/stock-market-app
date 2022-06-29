@@ -3,3 +3,25 @@
 }
 
 li {list-style-type: none;}
+
+.login-form {
+  /* background-color: white; */
+  background-color: #e3f2fd;
+}
+
+/* sliding in the Login form from the right to the left */
+.enter-from-right {
+  animation: moveleft 1s 1 normal forwards;
+}
+
+@keyframes moveleft {
+  0% {
+    opacity: 0;
+    transform: translateX(1000px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

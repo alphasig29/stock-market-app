@@ -16,8 +16,8 @@
             *ngIf="!loginForm.get('userData.email').valid && loginForm.get('userData.email').touched"
             class="help-block">
             <span
-            *ngIf="loginForm.get('userData.eamil').errors['required']">
-              The name is required!
+            > <!-- *ngIf="loginForm.get('userData.eamil').errors['required']"  -->
+              Email is required!
           </span>
           </span>
         </div>

@@ -25,6 +25,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BackgroundComponent } from './shared/background/background.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RandomQuoteComponent,
     LoadingSpinnerComponent,
     AdminComponent,
-    StockGridComponent
+    StockGridComponent,
+    BackgroundComponent
   ],
   imports: [
     BrowserModule,
