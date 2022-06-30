@@ -52,11 +52,13 @@
 
         <div>
           <span><a routerLink="" class="btn-link" (click)="toggleFormMode()">{{formMode=='login' ? 'Register' : 'Cancel'}}</a></span>
+          <!-- <div class="circle-pulse"></div> -->
           <button class="btn btn-primary float-right" style="margin-bottom: 5px;"
           [disabled]="(!loginForm.get('userData.email').valid && loginForm.get('userData.email').touched) ||
             (!loginForm.get('userData.password').valid && loginForm.get('userData.password').touched) ||
-            (formMode=='register' && !loginForm.get('userData.displayName').valid && !loginForm.get('userData.displayName').touched)"
-          type="submit">{{formMode=='login' ? 'Login' : 'Register'}}</button>
+            (formMode=='register' && !loginForm.get('userData.displayName').valid && !loginForm.get('userData.displayName').touched) ||
+            (!loginForm.get('userData.email').touched && !loginForm.get('userData.password').touched)"
+          type="submit">{{formMode=='login' ? 'Login' : 'Register'}} </button>
 
         </div>
       </form>
