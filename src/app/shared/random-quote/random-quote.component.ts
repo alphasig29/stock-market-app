@@ -12,7 +12,7 @@ export class RandomQuoteComponent implements OnInit {
     "I wish I could buy Facebook stock with my Farmville money.",
     "I'm much more comfortable putting my money into fottbal bets than into thte stock market.",
     "Buy low, sell high, sleep 16 hours a day.",
-    "The NASDAQ indes indicated that you were a poor investment of both time and money.",
+    "The NASDAQ index indicated that you were a poor investment of both time and money.",
     "I'm not sure if I'm trading better, or the market stopped going down.",
     "The stock market is less volatile than most romantic relationships.",
     "I want to have just enough money to be able to decide for myself if money solves everything.",

@@ -3,59 +3,43 @@
 <app-login class="float-right col-md-3 border border-primary rounded-sm login-form enter-from-right"
   style="margin-top: 5px; margin-right: 5px; box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.24); "
   *ngIf="!userIsLoggedIn"></app-login>
-<div class="container" style="min-height: 275px;">
-  <h3 class="text-center">Welcome to the Stonk Pit</h3>
+<!-- <div class="float-left enter-from-left">
+  <p>This is the left</p>
+</div> -->
+
+  <br>
+<div class="container text-white" style="min-height: 275px;">
+  <h1 class="text-center text-primary">Welcome to the Stonk Pit</h1>
   <br>
   <div class="row">
     <div class= "container col-md-10">
-      <p>Once you login, you will have access to monitor the market sectors in real-time,
-        as well as creating your own list of stocks to follow.
-      </p>
-      <p>Enjoy your time on The Stonk Pit!</p>
-    </div>
+      <h2>Have you noticed all those jerks getting rich playing with STOCKS and working a few hours each
+        week while you are working a long hours and hard each week?
+      </h2>
+      <br>
+      <h1 class="text-success">With the same tools, you to
+        could be living like royalty too!</h1>
 
-    <div class="container col-md-10">
-      <hr>
-      <h6>Existing Key Features:</h6>
-      <div >
-        <li>Register and Log In to an account, using APIs.</li>
-        <li>Navigation is locked down by Authentication and User's Roles</li>
-        <li>Home landing page has Random Quote, Login/Register feature, Site Title and Footer sections. </li>
-        <li>Stock Market Sector route that retreives live S&P 500 data on a 5 second interval, and uses color & ordering to reflect performance.</li>
-        <li>Authorization / Role Guards have been placed on all Routes.</li>
-        <li>Loggin out re-routes to the home page for the user to log in again.</li>
-        <li>UI Stubs exist for the Stock Watch List and Administration features.</li>
-      </div>
-    </div>
+        <br>
+      <h2>Sign up now to enjoy the luxury of real-time Stock Market Monitoring that
+        includes Sector Breakouts and your own personal Favorites Watch List. </h2>
 
-    <div class=" container col-md-10">
-      <hr>
-      <h6>Next Key Features:</h6>
-      <div>
-        <li>Implement a 'My Stock' featue to store the current user's stock watch list. </li>
-        <li>Focus on the customer experience, using animations, transitions, and graphics.</li>
-      </div>
-    </div>
-
-    <div class=" container col-md-10">
-      <hr>
-      <h6>Potential Future Enhancements:</h6>
-      <div>
-        <li>Administration section to manage site users.</li>
-        <li>Revamp the Navigation Bar to be on the left with better customer experience.</li>
-        <li>Redo the APIs to use the npm libraries rather than https API calls.</li>
-        <li>Implement security measures in the Firebase backend.</li>
-        <hr>
-      </div>
     </div>
 
   </div>
   <br>
   <br>
+
   <div class="row">
-    <div class="container col-md-10">
+    <div class="container col-md-10 float-bottom">
       <app-random-quote></app-random-quote>
     </div>
   </div>
+
+  <br><br><br>
+  <div class=" container col-md-10 text-center">
+    <p>Enjoy your time on The Stonk Pit!</p>
+  </div>
+
 </div>
 <!-- <app-stock-list></app-stock-list> -->

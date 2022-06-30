@@ -39,7 +39,8 @@ body {
 }
 
 .image {
-  background-image: url("../assets/background6.jpg");
+  background-image: url("../assets/background7.png");
+  /* filter: brightness(25%); */
   background-size: cover;
   background-size: 100%;
   min-height: 700px;
