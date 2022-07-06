@@ -134,7 +134,7 @@ export class AuthService {
     const url = `${environment.FIREBASE_URL}user/${user.userCredentials.userId}/userdata.json`;
     this.http.put(url,
       user).subscribe(response => {
-        console.log(response);
+        // console.log(response);
     });
 
   }

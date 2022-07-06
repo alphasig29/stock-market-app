@@ -66,11 +66,14 @@ export class StockDataService {
   }
 
   refreshStockQuotes(stockList: string[]) {
-    if (!(stockList.length === 0)) {
+    // console.log('stock-date.service stockList', stockList);
+    if ((stockList.length === 0)) {
       // console.log('No stocks in the wishlist!');
+      return;
     }
     // send request to get current data
-
+    // console.log('stock-date.service stockList !==0', stockList);
+    // console.log('stock-date.service stockList == null', stockList.length);
     this.stockApiService.getStockDataForList(stockList).subscribe(returnData => {
       this.refreshStockData = returnData;
       this.loadStockQuoteArrayWithNewData(this.stockQuotes,this.refreshStockData);

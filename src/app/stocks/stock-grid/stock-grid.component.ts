@@ -66,8 +66,8 @@ export class StockGridComponent implements OnInit, AfterViewInit, OnChanges, OnD
     this.timerSubscription = timer(0, this.config.API_DELAY_MILLISECONDS).pipe(
       map(() => {
         // load the latest sector data via the http request
-        console.log('timer-this.authService.getStockWatchList()', this.authService.getStockWatchList());
-        console.log('timer - getStockQuotes()', this.stockQuoteService.getStockQuotes());
+        // console.log('timer-this.authService.getStockWatchList()', this.authService.getStockWatchList());
+        // console.log('timer - getStockQuotes()', this.stockQuoteService.getStockQuotes());
         // console.log('timer-this.authService.getStockWatchList()', this.authService.getStockWatchList());
         this.stockQuoteService.refreshStockQuotes(this.authService.getStockWatchList());
         // log when data is refreshed so we can check for memory leaks
